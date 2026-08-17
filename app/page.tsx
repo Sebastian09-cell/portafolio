@@ -4,15 +4,27 @@ import { projects } from "./data/projects-data";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { skillCategories } from "./data/skills-data";
 import { experience, education } from "./data/experience-data";
-
 import Image from "next/image";
+import PillNav from "./PillNavItem";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 py-16 text-center bg-white dark:bg-black transition-colors">
       <ThemeToggle />
+      <PillNav
+        items={[
+          { label: "Proyectos", href: "#proyectos" },
+          { label: "Habilidades", href: "#habilidades" },
+          { label: "Experiencia", href: "#experiencia" },
+          { label: "Contacto", href: "#contacto" },
+        ]}
+        baseColor="#111827"
+        pillColor="#ffffff"
+        hoveredPillTextColor="#ffffff"
+        pillTextColor="#111827"
+      />
 
-      <div className="flex flex-col md:flex-row items-center gap-10 max-w-3xl">
+      <div className="flex flex-col md:flex-row items-center py-10 gap-10 max-w-3xl">
         <Image
           src="/foto-perfil.jpeg"
           alt="Sebastián Torres"
@@ -70,12 +82,15 @@ export default function Home() {
       <p className="mt-4 text-gray-700 dark:text-gray-300">
         Trabajo con React, Next.js, TypeScript y Prisma.
       </p>
-      <section className="w-full mt-16">
+      <section id="proyectos" className="w-full py-10 mt-16 scroll-mt-10">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
           Proyectos
         </h2>
 
-        <div style={{ height: 400 }} className="w-full">
+        <div
+          style={{ height: 400 }}
+          className="w-full flex justify-center px-4"
+        >
           <DriftWall
             items={projects.map((p) => ({
               image: p.image,
@@ -130,7 +145,10 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="w-full mt-20 max-w-2xl mx-auto text-left">
+      <section
+        id="habilidades"
+        className="w-full mt-20 max-w-2xl py-10 mx-auto scroll-mt-10 text-left"
+      >
         <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white text-center">
           Habilidades
         </h2>
@@ -157,7 +175,10 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="w-full mt-20 max-w-2xl mx-auto text-left">
+      <section
+        id="experiencia"
+        className="w-full mt-20 max-w-2xl py-10 mx-auto scroll-mt-10 text-left"
+      >
         <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white text-center">
           Experiencia y Formación
         </h2>
@@ -225,6 +246,24 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+      <section
+        id="contacto"
+        className="w-full min-h-screen flex flex-col items-center justify-center text-center px-4 scroll-mt-10"
+      >
+        <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          ¿Hablamos?
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">
+          Estoy buscando mi primera oportunidad como desarrollador. Si tenés
+          algo en mente, escribime.
+        </p>
+        <a
+          href="mailto:sebastiantorresdelgado526@gmail.com"
+          className="inline-block text-sm px-6 py-3 rounded-md bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:opacity-90 transition-opacity"
+        >
+          Contactame
+        </a>
       </section>
     </main>
   );
