@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
@@ -8,6 +9,7 @@ export function ThemeToggle() {
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     const dark = saved ? saved === "dark" : true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsDark(dark);
     document.documentElement.classList.toggle("dark", dark);
   }, []);
@@ -22,9 +24,10 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="fixed top-4 right-4 px-3 py-2 rounded-lg border border-gray-400 dark:border-gray-600 text-sm"
+      aria-label="Cambiar tema"
+      className="fixed top-4 right-4 p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
     >
-      {isDark ? "☀️ Claro" : "🌙 Oscuro"}
+      {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
     </button>
   );
 }
