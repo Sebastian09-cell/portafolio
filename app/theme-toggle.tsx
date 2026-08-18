@@ -1,31 +1,34 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { FiSun, FiMoon } from "react-icons/fi";
 
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
+  // 1. Espera a que React se hidrate en el navegador móvil
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const dark = saved ? saved === "dark" : true;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsDark(dark);
-    document.documentElement.classList.toggle("dark", dark);
+    setMounted(true);
   }, []);
 
-  const toggle = () => {
-    const newValue = !isDark;
-    setIsDark(newValue);
-    document.documentElement.classList.toggle("dark", newValue);
-    localStorage.setItem("theme", newValue ? "dark" : "light");
-  };
+  // Rendereado de reserva mientras carga el cliente
+  if (!mounted) {
+    return (
+      <div className="fixed top-4 right-4 z-[9999] p-3 rounded-full bg-neutral-900/80 border border-neutral-800 opacity-0" />
+    );
+  }
+
+  // 2. Usa resolvedTheme para detectar el tema real aplicado por el Provider
+  const isDark = (resolvedTheme || theme) === "dark";
 
   return (
     <button
-      onClick={toggle}
+      type="button"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Cambiar tema"
-      className="fixed top-4 right-4 p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      className="fixed top-4 right-4 z-[9999] pointer-events-auto cursor-pointer p-3 rounded-full bg-neutral-900/80 text-amber-400 border border-neutral-800 backdrop-blur-sm active:scale-95 transition-all"
     >
       {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
     </button>
