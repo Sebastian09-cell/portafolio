@@ -87,26 +87,58 @@ export default function Home() {
           Proyectos
         </h2>
 
-        <div
-          style={{ height: 400 }}
-          className="w-full flex justify-center px-4"
-        >
-          <DriftWall
-            items={projects.map((p) => ({
-              image: p.image,
-              title: p.name,
-              href: p.liveUrl,
-            }))}
-            columns={3}
-            tileWidth={240}
-            tileHeight={135}
-            speed={20}
-            pauseOnHover={true}
-            dim={0.85}
-            fade={0.3}
-          />
-        </div>
+        <div className="w-full">
+          <div className="block md:hidden w-full px-4">
+            <div className="flex flex-col gap-6">
+              {projects.map((p) => (
+                <div
+                  key={p.name}
+                  className="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 shadow-lg flex flex-col gap-3"
+                >
+                  <div className="w-full h-48 bg-neutral-950 rounded-xl overflow-hidden relative">
+                    <Image
+                      src={p.image}
+                      alt={p.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h3 className="text-white font-bold text-lg">{p.name}</h3>
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-center bg-white text-black py-2 rounded-xl font-medium text-sm hover:bg-neutral-200 transition"
+                  >
+                    Ver proyecto
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
 
+          <div className="hidden md:block w-full">
+            <div
+              style={{ height: 400 }}
+              className="w-full flex justify-center px-4"
+            >
+              <DriftWall
+                items={projects.map((p) => ({
+                  image: p.image,
+                  title: p.name,
+                  href: p.liveUrl,
+                }))}
+                columns={3}
+                tileWidth={240}
+                tileHeight={135}
+                speed={20}
+                pauseOnHover={true}
+                dim={0.85}
+                fade={0.3}
+              />
+            </div>
+          </div>
+        </div>
         <div className="mt-10 grid gap-6 max-w-2xl mx-auto">
           {projects.map((p) => (
             <div
