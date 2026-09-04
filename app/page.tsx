@@ -1,7 +1,6 @@
 "use client";
 
 import { ThemeToggle } from "./theme-toggle";
-import DriftWall from "./DriftWall";
 import { projects } from "./data/projects-data";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { skillCategories } from "./data/skills-data";
@@ -135,65 +134,42 @@ export default function Home() {
           Proyectos
         </h2>
 
-        <div className="hidden md:block w-full mb-12">
-          <div
-            style={{ height: 320 }}
-            className="w-full flex justify-center px-4"
-          >
-            <DriftWall
-              items={projects.map((p) => ({
-                image: p.image,
-                title: p.name,
-                href: p.liveUrl,
-              }))}
-              columns={3}
-              tileWidth={240}
-              tileHeight={135}
-              speed={20}
-              pauseOnHover={true}
-              dim={0.85}
-              fade={0.3}
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-6 max-w-3xl mx-auto px-4 sm:px-0">
+        <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((p) => (
             <article
               key={p.name}
-              className="flex flex-col sm:flex-row gap-6 p-5 rounded-2xl border border-gray-200 dark:border-gray-800/80 bg-gray-50 dark:bg-neutral-900/60 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300"
+              className="group flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800/80 bg-gray-50 dark:bg-neutral-900/60 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300"
             >
-              <div className="w-full sm:w-2/5 h-48 sm:h-auto min-h-[160px] bg-neutral-950 rounded-xl overflow-hidden relative border border-neutral-800/80 flex-shrink-0">
+              <div className="relative w-full aspect-[16/10] bg-neutral-950">
                 <Image
                   src={p.image}
                   alt={p.name}
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-contain object-top transition-transform duration-300 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-4 text-xl font-bold text-white drop-shadow-sm">
+                  {p.name}
+                </span>
               </div>
 
-              <div className="w-full sm:w-3/5 flex flex-col justify-between text-left">
-                <div>
-                  <h3 className="font-bold text-xl text-gray-900 dark:text-white mb-2">
-                    {p.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                    {p.description}
-                  </p>
+              <div className="flex flex-col flex-1 p-5 text-left">
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                  {p.description}
+                </p>
 
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {p.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs px-2.5 py-1 rounded-md bg-gray-200/70 dark:bg-neutral-800 text-gray-700 dark:text-gray-300 border border-gray-300/50 dark:border-neutral-700/50 font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {p.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs px-2.5 py-1 rounded-md bg-gray-200/70 dark:bg-neutral-800 text-gray-700 dark:text-gray-300 border border-gray-300/50 dark:border-neutral-700/50 font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex gap-3 mt-auto">
                   <a
                     href={p.liveUrl}
                     target="_blank"
@@ -226,7 +202,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-3 text-gray-900 dark:text-white">
           Habilidades
         </h2>
-        <p className="text-black/80 dark:text-gray-400">
+        <p className="text-black/80 dark:text-gray-400 mb-8">
           En mi viaje por el{" "}
           <span className="text-black dark:text-white font-semibold">
             mundo del desarrollo web

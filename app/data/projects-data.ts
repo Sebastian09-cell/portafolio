@@ -1,12 +1,21 @@
-export const projects = [
+export type Project = {
+  name: string;
+  description: string;
+  image: string;
+  liveUrl: string;
+  repoUrl: string | null;
+  stack: string[];
+};
+
+export const projects: Project[] = [
   {
-    name: "Peluditos",
+    name: "Habit Tracker",
     description:
-      "Web en producción para un cliente real de paseo de perros. Landing informativa con formulario de contacto.",
-    image: "/projects/peluditos.png",
-    liveUrl: "https://www.paseadorespeluditos.com/",
-    repoUrl: null,
-    stack: ["HTML", "CSS", "JavaScript"],
+      "Gestor de tareas multiusuario con autenticación, donde cada usuario ve solo sus propios datos.",
+    image: "/projects/Todo-app.png",
+    liveUrl: "https://habit-tracker-amber-rho.vercel.app/",
+    repoUrl: "https://github.com/Sebastian09-cell/habit-tracker",
+    stack: ["Next.js", "Prisma", "PostgreSQL", "Clerk", "Tailwind"],
   },
   {
     name: "Ecommerce",
@@ -18,12 +27,21 @@ export const projects = [
     stack: ["React", "TypeScript", "Chakra UI", "Zustand", "React Query"],
   },
   {
-    name: "Habit Tracker",
+    name: "Libros API",
     description:
-      "Gestor de tareas multiusuario con autenticación, donde cada usuario ve solo sus propios datos.",
-    image: "/projects/Todo-app.png",
-    liveUrl: "https://habit-tracker-amber-rho.vercel.app/",
-    repoUrl: "https://github.com/Sebastian09-cell/habit-tracker",
-    stack: ["Next.js", "Prisma", "PostgreSQL", "Clerk", "Tailwind"],
+      "API REST ligera y pública para gestionar un catálogo de libros, con playground en vivo para probar los endpoints.",
+    image: "/projects/libros-api.png",
+    liveUrl: "https://libros-api-typescript.vercel.app/",
+    repoUrl: "https://github.com/Sebastian09-cell/libros-api-typescript",
+    stack: ["Node.js", "Express", "TypeScript", "Render"],
+  },
+  {
+    name: "Peluditos",
+    description:
+      "Web en producción para un cliente real de paseo de perros. Landing informativa con formulario de contacto.",
+    image: "/projects/peluditos.png",
+    liveUrl: "https://www.paseadorespeluditos.com/",
+    repoUrl: null,
+    stack: ["HTML", "CSS", "JavaScript"],
   },
 ];
