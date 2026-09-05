@@ -1,4 +1,15 @@
-export const skillCategories = [
+type Skill = {
+  name: string;
+  icon: string;
+  monochrome?: boolean;
+};
+
+type SkillCategory = {
+  category: string;
+  skills: Skill[];
+};
+
+export const skillCategories: SkillCategory[] = [
   {
     category: "Frontend",
     skills: [
@@ -14,10 +25,31 @@ export const skillCategories = [
   {
     category: "Backend & Datos",
     skills: [
-      { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs" },
-      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql" },
-      { name: "Prisma", icon: "https://cdn.simpleicons.org/prisma/white" },
-      { name: "Supabase", icon: "https://cdn.simpleicons.org/supabase" },
+      {
+        name: "Node.js",
+        icon: "https://cdn.simpleicons.org/nodedotjs",
+        monochrome: false,
+      },
+      {
+        name: "Express",
+        icon: "https://cdn.simpleicons.org/express/ffffff",
+        monochrome: false,
+      },
+      {
+        name: "PostgreSQL",
+        icon: "https://cdn.simpleicons.org/postgresql",
+        monochrome: false,
+      },
+      {
+        name: "Prisma",
+        icon: "https://cdn.simpleicons.org/prisma/ffffff",
+        monochrome: false,
+      },
+      {
+        name: "Supabase",
+        icon: "https://cdn.simpleicons.org/supabase",
+        monochrome: false,
+      },
     ],
   },
   {

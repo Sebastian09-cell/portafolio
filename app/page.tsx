@@ -105,7 +105,7 @@ export default function Home() {
               <FiMail size={24} />
             </a>
             <a
-              href="/cv-sebastian-torres.pdf"
+              href="/Hoja-de-Vida-Desarrollador-Junior.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -233,7 +233,11 @@ export default function Home() {
                     <img
                       src={skill.icon}
                       alt={skill.name}
-                      className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-200 dark:invert-0 invert"
+                      className={`w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-200 ${
+                        skill.monochrome
+                          ? "invert dark:invert"
+                          : "invert dark:invert-0"
+                      }`}
                     />
                     <span className="text-xs font-medium text-gray-600 dark:text-gray-300 text-center">
                       {skill.name}
